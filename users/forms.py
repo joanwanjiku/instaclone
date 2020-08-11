@@ -12,14 +12,15 @@ class SignUpForm(UserCreationForm):
 
 class UserUpdateForm(forms.ModelForm):
     email = forms.EmailField(max_length=150)
-    bio = forms.CharField()
 
 
     class Meta:
         model = User
-        fields = ['username','email', 'bio']
+        fields = ['username','email']
 
 class ProfileUpdateForm(forms.ModelForm):
+    bio = forms.CharField()
+
     class Meta:
         model = Profile
-        fields = ['image']
+        fields = ['image', 'bio']
