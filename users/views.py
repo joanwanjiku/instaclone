@@ -27,9 +27,7 @@ def register(request):
 @login_required
 def profile(request):
     user = request.user
-    print(user.id)
     posts = Post.objects.filter(user=user.id)
-    print(posts)
     if request.method == 'POST':
         up_form = UserUpdateForm(request.POST, instance=request.user)
         pr_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
