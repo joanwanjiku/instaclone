@@ -35,6 +35,7 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 # Application definition
 
 INSTALLED_APPS = [
+    'instaposts.apps.InstapostsConfig',
     'users.apps.UsersConfig',
     'crispy_forms',
     'django.contrib.admin',

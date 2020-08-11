@@ -1,0 +1,18 @@
+
+.react{
+    display: flex;
+    flex-direction: row;
+}
+.comments{
+    display: none;
+}
+.content-section{
+    width: 80%;
+    margin: 0 auto;
+}
+.react img{
+    margin-right: 1em;
+}
+.react img:last-child:hover{
+    cursor: pointer;
+}
