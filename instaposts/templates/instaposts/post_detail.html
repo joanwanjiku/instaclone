@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="row content-section">
+        <h3>welcome</h3>
+        <div class="col-sm-12">
+                <div class="card mt-1">
+                    <div class="react">
+                        <img src="{{object.user.profile.image.url}}" alt="" class="rounded ml-1" style="width: 60px; height:60px; border-radius: 50%; border:2px red solid">
+                        <p>{{object.user}}</p>
+                    </div>
+                    
+                    <img class="card-img-top mt-1" src="{{object.image.url}}" alt="Card image cap">
+                    <div class="card-body">
+                        
+                        <div class="react">
+                            <img src="https://img.icons8.com/ios-glyphs/30/000000/hearts.png"/>
+                            <img data-toggle="collapse" data-target="#commentSec{{object.id}}" src="https://img.icons8.com/metro/26/000000/comments.png"/></a>                      
+
+                        </div>
+                        
+                        <p class="card-text">{{object.desc}}</p>
+                        <div class="react">
+                            <p>{{object.likes}} Likes</p>
+                            <p>{{object.comment_set.all | length}} Comments</p>
+                        </div>
+                        
+                        <div class="card-footer collapse" id='commentSec{{object.id}}'>
+                            
+                            {% for comment in object.comment_set.all %}
+                                <small>{{comment.content}}</small><br>
+                            {% endfor %}
+                            <form class="form-inline" action="{%url 'addcomment' object.id%}" method="POST">   
+                                {% csrf_token %}                         
+                                <div class="form-group">
+                                <input type="text" class="form-control col" id="comment" placeholder="Comment" name="comment">
+                                </div>
+                                <button type="submit" class="btn btn-outline-primary ml-2">Post</button>
+                            </form>
+                        </div>
+                        
+                    </div>
+                </div>
+
+        </div>
+        
+
+    </div>
+{% endblock %}
