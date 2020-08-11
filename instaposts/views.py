@@ -65,9 +65,7 @@ def add_comment(request, post_id):
         'posts': all_posts,
     }
     if request.method == 'POST':
-        print('hi')
         content = request.POST.get('comment')
-        print(content)
         comment_inst = Comment(content=content, post_id=post_id)      
         comment_inst.save()  
         return redirect('welcome')
@@ -80,7 +78,6 @@ def add_like(request, post_id):
     post = Post.objects.filter(pk=post_id).first()
     post.likes += 1
     post.save()
-    print('liked')
     all_posts = Post.get_all_posts()   
     context = {
         'posts': all_posts,
