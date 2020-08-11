@@ -1,13 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
-    <div class="row content-section">
-        <h3>welcome</h3>
-        <div class="col-sm-12">
+    <div class="row">
+        <div class="col-sm-9 mt-1">
             {% for post in posts %}
                 <div class="card mt-1">
-                    <div class="react">
-                        <img src="{{post.user.profile.image.url}}" alt="" class="rounded ml-1" style="width: 60px; height:60px; border-radius: 50%; border:2px red solid">
-                        <p>{{post.user}}</p>
+                    <div class="react mt-1">
+                        <img src="{{post.user.profile.image.url}}" alt="" class="ml-1" style="width: 60px; height:60px; border-radius: 50%; border:2px red solid">
+                        <p style="font-weight: bold;">{{post.user}}</p>
                     </div>
                     
                     <img class="card-img-top mt-1" src="{{post.image.url}}" alt="Card image cap">
@@ -21,8 +20,8 @@
                         
                         <p class="card-text">{{post.desc | truncatewords:20}} <a href="{% url 'post-detail' post.id %}">read more</a></p>
                         <div class="react">
-                            <p>{{post.likes}} Likes</p>
-                            <p>{{post.comment_set.all | length}} Comments</p>
+                            <p><span style="font-weight: bold;">{{post.likes}}</span> Likes</p>
+                            <p><span style="font-weight: bold;">{{post.comment_set.all | length}}</span> Comments</p>
                         </div>
                         
                         <div class="card-footer collapse" id='commentSec{{post.id}}'>
@@ -43,6 +42,26 @@
                 </div>
             {% endfor %}
 
+        </div>
+        <div class="col-sm-3 mt-2">
+            <div class="row ">
+                <div class="col react">
+                    <div class="pr-img">
+                        <img src="{{user.profile.image.url}}" alt="" style="border-radius: 50%; width:60px;height:60px;">
+                    </div>
+                    <div class="pr-info">
+                        <small>{{user}}</small>
+                        <small>{{user.email}}</small>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-1">
+                <div class="col-sm-6">
+                    <button class="btn btn-primary">Followers</button>
+
+                </div>
+            </div>
         </div>
         
 

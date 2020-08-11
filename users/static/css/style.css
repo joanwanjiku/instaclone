@@ -1,18 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Roboto:wght@100;700&display=swap');
 
+/* font-family: 'Noto Sans JP', sans-serif;
+font-family: 'Roboto', sans-serif; */
+@font-face {
+    font-family: 'Billabong';
+    src: url('../fonts/Billabong.woff') format('woff2'),
+        url('../fonts/Billabong.woff2') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+body{
+    font-family: 'Noto Sans JP', sans-serif;
+    background-color: rgb(236, 233, 233);
+}
+h1, h2,h3, h4, h5, h6{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+}
+.login, .register{
+    background: white;
+    color: black;
+    margin: 2em 0;
+    padding: 2em;
+    
+}
 .react{
     display: flex;
     flex-direction: row;
 }
+.react p:last-child{
+    margin-left: 1em;
+}
 .comments{
     display: none;
 }
-.content-section{
-    width: 80%;
-    margin: 0 auto;
-}
+
 .react img{
     margin-right: 1em;
 }
 .react img:last-child:hover{
     cursor: pointer;
+}
+
+.asteriskField {
+    display: none;
 }

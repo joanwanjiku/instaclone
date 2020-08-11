@@ -6,10 +6,10 @@ from django.contrib.auth.mixins import UserPassesTestMixin
 from django.views.generic import DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.contrib.auth.models import User
 # Create your views here.
 
 
-# Create your views here.
 @login_required
 def home(request):
     all_posts = Post.get_all_posts()
@@ -84,3 +84,19 @@ def add_like(request, post_id):
     }    
         
     return render(request, 'instaposts/index.html', context)
+
+@login_required
+def search_user(request):
+    if 'user' in  request.GET and request.GET['user']:
+        search_psn = request.GET.get("user")
+        found_user = User.objects.filter(username=search_psn).first()
+        print(found_user.id)
+        posts = Post.objects.filter(user=found_user.id)
+
+        context = {
+            'user': found_user,
+            'posts': posts
+        }
+        
+        return render(request, 'instaposts/spec_user.html', context)
+    return redirect('welcome')

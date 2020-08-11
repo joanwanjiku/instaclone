@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="row">
+        <h3>Found!</h3>
+        <div class="col-sm-12 react">
+            <img src="{{user.profile.image.url}}" alt="">
+            <p>{{user.username}}</p>
+            <p>{{user.post}}</p>
+        </div>
+        
+    </div>
+    <div class="row mt-1" >
+        
+        {% for post in posts %}
+        <div class="col-sm-3">
+            <div class="card mt-1">
+                                    
+                <img class="card-img-top mt-1" src="{{post.image.url}}" alt="Card image cap" style="height: 20vh;">
+                <div class="card-body">
+                    
+                    <div class="react">
+                        <img data-toggle="collapse" data-target="#commentSec{{post.id}}" src="https://img.icons8.com/metro/26/000000/comments.png"/></a>                    
+
+                    </div>
+                    
+                    <p class="card-text">{{post.desc}}</p>
+                    <div class="react">
+                        <p>{{post.likes}} Likes</p>
+                        <p>{{post.comment_set.all | length}} Comments</p>
+                    </div>                     
+                </div>
+                <div class="card-footer collapse" id='commentSec{{post.id}}'>
+                        
+                    {% for comment in post.comment_set.all %}
+                        <small>{{comment.content}}</small><br>
+                    {% endfor %}
+                    
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+</div>
+{% endblock %}
