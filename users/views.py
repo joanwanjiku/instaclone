@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import SignUpForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib.auth.decorators import login_required
-
+from instaposts.models import Post
 
 # Create your views here.
 def welcome(request):
@@ -25,6 +25,10 @@ def register(request):
 
 @login_required
 def profile(request):
+    user = request.user
+    print(user.id)
+    posts = Post.objects.filter(user=user.id)
+    print(posts)
     if request.method == 'POST':
         up_form = UserUpdateForm(request.POST, instance=request.user)
         pr_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
@@ -38,6 +42,7 @@ def profile(request):
         pr_form = ProfileUpdateForm(instance=request.user.profile)
     content = {
         'user_form': up_form,
-        'profile_form': pr_form
+        'profile_form': pr_form,
+        'posts': posts
     }
     return render(request, 'users/profile.html', content)
