@@ -36,6 +36,9 @@
               <ul class="navbar-nav ml-auto navbar-link">
                 {% if user.is_authenticated %}
                 <li class="nav-item">
+                  <a class="nav-link" href="{% url 'new-post' %}">Create Post</a>
+                </li>
+                <li class="nav-item">
                   <a class="nav-link" href="{% url 'profile' %}">Profile</a>
                 </li>
                 <li class="nav-item">

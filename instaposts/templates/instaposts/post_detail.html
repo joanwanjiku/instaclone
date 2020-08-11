@@ -19,9 +19,19 @@
                         </div>
                         
                         <p class="card-text">{{object.desc}}</p>
-                        <div class="react">
-                            <p>{{object.likes}} Likes</p>
-                            <p>{{object.comment_set.all | length}} Comments</p>
+                        <div class="react" style="justify-content: space-between;">
+                            <div class="react">
+                                <p>{{object.likes}} Likes</p>
+                                <p>{{object.comment_set.all | length}} Comments</p>
+                            </div>
+                            {% if object.user == user %}
+                            <div class="react">
+                                <a href="{% url 'update-post' object.id %}" class="btn btn-outline-secondary">Update Post</a>
+                                <a href="{% url 'delete-post' object.id %}" class="btn btn-outline-danger ml-2">Delete Post</a>
+
+                            </div>
+                            {% endif %}
+                           
                         </div>
                         
                         <div class="card-footer collapse" id='commentSec{{object.id}}'>
