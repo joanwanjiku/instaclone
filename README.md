@@ -1,5 +1,5 @@
 # InstaClone
-Instaclone is a platform where users can view, multiple images.
+Instaclone is a clone of Instagram, it allows users to create and update profiles, users can post new posts, comment and like posts.
 
 ## Prerequisites
 - Have Git installed.
@@ -10,7 +10,7 @@ Instaclone is a platform where users can view, multiple images.
 - VS Code.
 ### Setup Installation
 To run the application:-
-1. Clone the repository to a folder in your machine using `https://github.com/joanwanjiku/gallery.git`
+1. Clone the repository to a folder in your machine using `https://github.com/joanwanjiku/instaclone.git`
 2. Cd to that folder.
 3. Create a virtual environment using `python3 -m venv virtual`
 4. Activate the virtual environment using `source virtual/bin/activate`
