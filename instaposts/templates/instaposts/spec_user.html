@@ -5,8 +5,14 @@
         <h3>Found!</h3>
         <div class="col-sm-12 react">
             <img src="{{user.profile.image.url}}" alt="">
-            <p>{{user.username}}</p>
-            <p>{{user.post}}</p>
+            <div class="info">
+                <p>{{user.username}}</p><br>
+                {% if user == current_user %}    
+                {% else %}      
+                    <a  href= "{% url 'follow-user' user.id %}" class="btn btn-outline-info">Follow</a>  
+                {% endif %}
+            </div>
+            
         </div>
         
     </div>

@@ -6,7 +6,7 @@
                 <div class="card mt-1">
                     <div class="react mt-1">
                         <img src="{{post.user.profile.image.url}}" alt="" class="ml-1" style="width: 60px; height:60px; border-radius: 50%; border:2px red solid">
-                        <p style="font-weight: bold;">{{post.user}}</p>
+                        <a href="{% url 'user-profile' post.user.id %}"><p style="font-weight: bold;">{{post.user}}</p></a>
                     </div>
                     
                     <img class="card-img-top mt-1" src="{{post.image.url}}" alt="Card image cap">
@@ -52,15 +52,15 @@
                     <div class="pr-info">
                         <small>{{user}}</small>
                         <small>{{user.email}}</small><br>
-                        <small>{{user.profile.bio}}</small>
+                        <small>{{user.profile.bio}}</small>                        
                     </div>
                 </div>
             </div>
             
             <div class="row mt-1">
-                <div class="col-sm-6">
-                    <button class="btn btn-primary">Followers</button>
-
+                <div class="col-sm-6 react">
+                    <button class="btn btn-primary">{{user.followers.all | length}} Followers</button>
+                    <button class="btn btn-info ml-1"> Following {{user.following.all | length}}</button>
                 </div>
             </div>
         </div>

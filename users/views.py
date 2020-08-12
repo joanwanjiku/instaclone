@@ -45,3 +45,5 @@ def profile(request):
         'posts': posts
     }
     return render(request, 'users/profile.html', content)
+
+

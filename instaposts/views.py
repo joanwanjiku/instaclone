@@ -7,6 +7,7 @@ from django.views.generic import DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.contrib.auth.models import User
+from users.models import UserFollowing
 # Create your views here.
 
 
@@ -100,3 +101,26 @@ def search_user(request):
         
         return render(request, 'instaposts/spec_user.html', context)
     return redirect('welcome')
+
+def user_follow(request, user_id):
+    user = User.objects.filter(pk=user_id).first()
+    current_user = request.user
+    followers = user.following.all()
+    followings = user.followers.all()
+    print(followers)
+    print(followings)
+    posts = Post.objects.filter(user=user.id)
+    context = {
+            'current_user': current_user,
+            'user': user,
+            'posts': posts
+    }
+        
+    return render(request, 'instaposts/spec_user.html', context)
+
+def follow_another(request, user_id):
+    user = User.objects.filter(pk=user_id).first()
+    
+    follow = UserFollowing(user_id_id=request.user.id, following_user_id_id=user.id)
+    follow.save()
+    return redirect('user-profile', user_id=user.id)

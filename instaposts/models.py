@@ -21,6 +21,11 @@ class Post(models.Model):
     def get_all_posts(cls):
         return cls.objects.order_by('-date_posted')
 
+    @classmethod
+    def delete_post(cls, post_id):
+        post = cls.objects.filter(pk=post_id)
+        post.delete()
+
     def get_absolute_url(self):
         return reverse('post-detail', kwargs={'pk':self.pk}) 
     
