@@ -3,7 +3,7 @@ from django.contrib import messages
 from .forms import SignUpForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib.auth.decorators import login_required
 from instaposts.models import Post
-from .models import UserFollowing
+from .models import Follow
 
 # Create your views here.
 def welcome(request):

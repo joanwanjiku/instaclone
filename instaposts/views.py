@@ -7,7 +7,8 @@ from django.views.generic import DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.contrib.auth.models import User
-from users.models import UserFollowing
+from users.models import Follow
+from django.contrib import messages
 # Create your views here.
 
 
@@ -119,8 +120,12 @@ def user_follow(request, user_id):
     return render(request, 'instaposts/spec_user.html', context)
 
 def follow_another(request, user_id):
-    user = User.objects.filter(pk=user_id).first()
-    
-    follow = UserFollowing(user_id_id=request.user.id, following_user_id_id=user.id)
-    follow.save()
+    user = User.objects.filter(pk=user_id).first()    
+    follow = Follow(user_id=request.user.id, following_user_id=user.id)
+
+    try:
+        follow.save()
+    except:
+        messages.warning(request, f'You have already followed this user')
+        return redirect('user-profile', user_id=user.id)
     return redirect('user-profile', user_id=user.id)

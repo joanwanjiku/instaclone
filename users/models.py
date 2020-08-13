@@ -22,11 +22,13 @@ class Profile(models.Model):
             img.thumbnail(output_size)
             img.save(self.image.path)
 
-class UserFollowing(models.Model):
-    user_id = models.ForeignKey(User, related_name="following", on_delete=models.CASCADE)
-    following_user_id = models.ForeignKey(User, related_name="followers", on_delete=models.CASCADE)
+class Follow(models.Model):
+    user = models.ForeignKey(User, related_name="following", on_delete=models.CASCADE)
+    following_user = models.ForeignKey(User, related_name="followers", on_delete=models.CASCADE)
 
     def __str__(self):
         return f'{self.user_id} Follow'  
 
+    class Meta:
+        unique_together = ('user_id', 'following_user_id')
    
